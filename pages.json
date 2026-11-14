@@ -1,10 +1,10 @@
 [
-  {"name": "الإشعارات", "url": "/Notifications/NotificationsList"},
-  {"name": "الإعلانات", "url": "/Announcement/AllAnnouncement"},
-  {"name": "الاسيمنتات", "url": "/Assignment/AssignmentStudentList"},
-  {"name": "الكويزات", "url": "/Quizzes/StudentQuizzes"},
-  {"name": "الامتحانات", "url": "/ExamQuiz/StudentExams"},
-  {"name": "الميتنجات", "url": "/StudentMeeting/MeetingList"},
-  {"name": "الملفات والمواد", "url": "/ELearning/StudentElearning"},
-  {"name": "الدرجات", "url": "/GradeBook/StudentGradeBook"}
+  {"name": "الإشعارات", "url": "/Notifications/NotificationsList", "dump": true},
+  {"name": "الإعلانات", "url": "/Announcement/AllAnnouncement", "dump": true},
+  {"name": "الاسيمنتات", "url": "/Assignment/AssignmentStudentList", "dump": true},
+  {"name": "الكويزات", "url": "/Quizzes/StudentQuizzes", "dump": true},
+  {"name": "الامتحانات", "url": "/ExamQuiz/StudentExams", "dump": true},
+  {"name": "الميتنجات", "url": "/StudentMeeting/MeetingList", "dump": true},
+  {"name": "الملفات والمواد", "url": "/ELearning/StudentElearning", "dump": true},
+  {"name": "الدرجات", "url": "/GradeBook/StudentGradeBook", "dump": true}
 ]

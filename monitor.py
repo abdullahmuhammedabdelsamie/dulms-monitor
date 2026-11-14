@@ -42,6 +42,16 @@ def telegram(text):
     r.raise_for_status()
 
 
+def telegram_file(filename, content, caption=""):
+    r = requests.post(
+        f"https://api.telegram.org/bot{env('TG_TOKEN')}/sendDocument",
+        data={"chat_id": env("TG_CHAT_ID"), "caption": caption[:900]},
+        files={"document": (filename, content)},
+        timeout=60,
+    )
+    r.raise_for_status()
+
+
 def login(session):
     r = session.get(LOGIN_URL, timeout=30)
     r.raise_for_status()
@@ -106,7 +116,7 @@ def main():
         telegram("✅ تسجيل الدخول نجح وتليجرام شغال.")
 
     failed = False
-    for page in pages:
+    for index, page in enumerate(pages, 1):
         name = page["name"]
         url = urljoin(BASE + "/", page["url"])
         if "REPLACE_ME" in url:
@@ -117,6 +127,13 @@ def main():
             r.raise_for_status()
             if "txtPass" in r.text:
                 raise RuntimeError("redirected to login page")
+
+            # one-time diagnostic: send the raw HTML the script sees to Telegram
+            if page.get("dump") and name not in state.get("_dumped", []):
+                raw = r.text.replace(env("DULMS_USER"), "USER_ID")
+                telegram_file(f"page_{index}.html", raw.encode("utf-8"), f"{index}. {name}\n{url}")
+                state.setdefault("_dumped", []).append(name)
+
             items = extract_items(r.text, page.get("selector", "tr"), page.get("ignore", []))
 
             if name not in state:  # first time: save silently as baseline
