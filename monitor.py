@@ -1,4 +1,4 @@
-"""DULMS monitor: logs in, watches assignments, quizzes, files and grades, alerts you on Telegram."""
+"""DULMS monitor: logs in, watches assignments, quizzes, meetings, files and grades, alerts you on Telegram."""
 import hashlib
 import json
 import os
@@ -159,6 +159,58 @@ def parse_grades(data):
     return items
 
 
+def meeting_state(d):
+    """Same rules the site's own page uses: upcoming / open / closed."""
+    if d.get("IsStarted") == 0 and d.get("CloseDate") is None:
+        return "upcoming"
+    if d.get("CloseDate") is not None or d.get("IsEnded") == 1:
+        return "closed"
+    return "open"
+
+
+def meeting_status(d, state):
+    if state == "upcoming":
+        return f"⏳ يفتح: {d.get('StartDateS')}"
+    if state == "closed":
+        return f"🔒 اتقفل: {d.get('CloseDateS') or d.get('EndDateS')}"
+    return f"🟢 مفتوح دلوقتي، يقفل بعد: {d.get('RemainingTime')}"
+
+
+def parse_meetings(data):
+    items = {}
+    for course in data:
+        cid = first(course.get("CourseId"))
+        for d in course.get("Data") or []:
+            if d.get("StartDate") is None:  # a week with no meeting
+                continue
+            key = "|".join(
+                str(d.get(k)) for k in ("WeekId", "StartDate", "MeetingName", "CreatedBy", "VLcId")
+            )
+            state = meeting_state(d)
+            items[f"{cid}|{key}"] = {
+                "course": course.get("CourseName"),
+                "name": d.get("MeetingName"),
+                "week": d.get("WeekNumber"),
+                "start": d.get("StartDateS"),
+                "state": state,
+                "status": meeting_status(d, state),
+            }
+    return items
+
+
+def meeting_on_new(it):
+    if it["state"] == "closed":  # an old meeting showing up already finished: not news
+        return None
+    head = "🔴 ميتنج مفتوح دلوقتي" if it["state"] == "open" else "🆕 ميتنج جديد"
+    return f"{head}\n{it['course']}\n{it['name']} (أسبوع {it['week']})\n{it['status']}"
+
+
+def meeting_on_change(it, old, new):
+    if old.get("state") != "open" and new.get("state") == "open":
+        return f"🔴 الميتنج فتح دلوقتي!\n{it['course']}\n{it['name']}\n{it['status']}"
+    return None
+
+
 def schedule_changes(old, new):
     out = []
     if not old.get("started") and new.get("started"):
@@ -237,6 +289,14 @@ API_MONITORS = [
         "on_new": q_new, "on_change": q_change,
     },
     {
+        "key": "meetings", "plural": "الميتنجات",
+        "url": "/StudentMeeting/GetStudentMeeting", "page": "/StudentMeeting/MeetingList",
+        "method": "GET", "parse": parse_meetings,
+        "tracked": ("name", "start", "state"),
+        "on_new": meeting_on_new, "on_change": meeting_on_change,
+        "summary": lambda items: f" منهم {sum(1 for i in items.values() if i['state'] == 'open')} مفتوح دلوقتي",
+    },
+    {
         "key": "files", "plural": "الملفات والمواد",
         "url": "/ELearning/GetStudentElearningCourses", "page": "/ELearning/StudentElearning",
         "method": "GET", "parse": parse_files,
@@ -270,6 +330,8 @@ def fetch_json(session, mon):
         raise RuntimeError("response is not JSON (session problem?)")
     if data == -1:
         raise RuntimeError("session died (-1)")
+    if data is None:
+        raise RuntimeError("empty response")
     return data
 
 
