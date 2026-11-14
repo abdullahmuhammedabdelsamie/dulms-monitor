@@ -754,6 +754,58 @@
     "grade": "4",
     "max": "10"
    }
+  },
+  "meetings": {
+   "1008|760076|/Date(1791308700000)/|lecture|78|6290": {
+    "name": "lecture",
+    "start": "06-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1008|763330|/Date(1791913500000)/|lecture2|78|6373": {
+    "name": "lecture2",
+    "start": "13-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1008|763330|/Date(1791913500000)/|lecture|78|6372": {
+    "name": "lecture",
+    "start": "13-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1008|769838|/Date(1793123100000)/|lecture 5|78|6491": {
+    "name": "lecture 5",
+    "start": "27-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1008|773092|/Date(1793731500000)/|Lecture |78|6571": {
+    "name": "Lecture ",
+    "start": "03-11-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1050|760116|/Date(1791468000000)/|Ch1-Introduction to marketing skills|10233|6314": {
+    "name": "Ch1-Introduction to marketing skills",
+    "start": "08-10-2026 05:00 PM",
+    "state": "closed"
+   },
+   "1050|760116|/Date(1791049500000)/|Ch2: The Marketing Environment|10233|6242": {
+    "name": "Ch2: The Marketing Environment",
+    "start": "03-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1050|763370|/Date(1791654300000)/|Ch2: Part 2 Marketing Macroenvironment|10233|6330": {
+    "name": "Ch2: Part 2 Marketing Macroenvironment",
+    "start": "10-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1050|766624|/Date(1792259100000)/|Chapter 3- Strategic Planning|10233|6417": {
+    "name": "Chapter 3- Strategic Planning",
+    "start": "17-10-2026 08:45 PM",
+    "state": "closed"
+   },
+   "1050|773132|/Date(1793472300000)/|Ch3- Strategic Planning Part 2|10233|6535": {
+    "name": "Ch3- Strategic Planning Part 2",
+    "start": "31-10-2026 08:45 PM",
+    "state": "closed"
+   }
   }
  }
 }
