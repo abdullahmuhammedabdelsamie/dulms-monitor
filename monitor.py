@@ -1,4 +1,4 @@
-"""DULMS monitor: logs in, watches assignments + quizzes, alerts you on Telegram."""
+"""DULMS monitor: logs in, watches assignments, quizzes, files and grades, alerts you on Telegram."""
 import hashlib
 import json
 import os
@@ -81,13 +81,13 @@ def first(x):
     return x[0] if isinstance(x, list) and x else x
 
 
-# ------------------------------------------- assignments + quizzes (JSON)
-def status_text(d, start, end, remaining):
+# ------------------------------------------------ JSON monitors (the site's own data)
+def status_text(d):
     if d.get("IsStarted") == 0:
-        return f"⏳ يفتح: {start}"
+        return f"⏳ يفتح: {d.get('StartDate')}"
     if d.get("IsEnded") == 1:
-        return f"🔒 اتقفل: {end}"
-    return f"🟢 مفتوح، يقفل بعد: {remaining}"
+        return f"🔒 اتقفل: {d.get('EndDate')}"
+    return f"🟢 مفتوح، يقفل بعد: {d.get('RemainingTime')}"
 
 
 def parse_assignments(data):
@@ -103,9 +103,7 @@ def parse_assignments(data):
                 "start": d.get("StartDate"),
                 "end": d.get("EndDate"),
                 "started": d.get("IsStarted"),
-                "grade": d.get("Grade"),
-                "max": d.get("MaximumGrade"),
-                "status": status_text(d, d.get("StartDate"), d.get("EndDate"), d.get("RemainingTime")),
+                "status": status_text(d),
             }
     return items
 
@@ -121,72 +119,150 @@ def parse_quizzes(data):
             "start": d.get("StartDate"),
             "end": d.get("EndDate"),
             "started": d.get("IsStarted"),
-            "grade": d.get("Grade"),
-            "max": d.get("MaxGrade"),
-            "status": status_text(d, d.get("StartDate"), d.get("EndDate"), d.get("RemainingTime")),
+            "status": status_text(d),
         }
     return items
 
 
-API_MONITORS = [
-    {
-        "key": "assignments",
-        "label": "اسيمنت",
-        "plural": "الاسيمنتات",
-        "url": "/Assignment/GetStudentAssignments",
-        "page": "/Assignment/AssignmentStudentList",
-        "parse": parse_assignments,
-    },
-    {
-        "key": "quizzes",
-        "label": "كويز",
-        "plural": "الكويزات",
-        "url": "/Quizzes/GetStudentQuizzes",
-        "page": "/Quizzes/StudentQuizzes",
-        "parse": parse_quizzes,
-    },
-]
-
-# only stable fields go in state.json (never the countdown), so it doesn't change every run
-TRACKED = ("name", "start", "end", "started", "grade", "max")
+def parse_files(data):
+    items = {}
+    for d in data:
+        if d.get("FileId") is None:
+            continue
+        who = d.get("NameEn_Employee") or ""
+        if d.get("NameEn_Title"):
+            who = f"{d['NameEn_Title']} / {who}"
+        items[str(d["FileId"])] = {
+            "course": f"{d.get('Code')} - {d.get('Name')}",
+            "name": d.get("FileName"),
+            "where": f"أسبوع {d.get('WeekNumber')} / {d.get('NameEn')}",
+            "by": who,
+        }
+    return items
 
 
-def pick(item):
-    return {k: item.get(k) for k in TRACKED}
+def parse_grades(data):
+    items = {}
+    for course in data:
+        label = f"{course.get('Code')} - {course.get('CourseName')}"
+        for d in course.get("Data") or []:
+            if d.get("QuizOrAssignId") is None:
+                continue
+            items[f"{d.get('TypeId')}:{d['QuizOrAssignId']}"] = {
+                "course": label,
+                "name": f"{d.get('Type')}: {d.get('QuizOrAssignName')}",
+                "grade": d.get("StudentGrade"),
+                "max": d.get("MaxGrade"),
+                "percent": d.get("studentPercent"),
+                "status": d.get("StudentStatus"),
+            }
+    return items
 
 
-def fmt_grade(it):
-    g = it.get("grade")
-    if g is None:
-        return None
-    if g == "":
-        return "اتصحح"
-    mx = it.get("max")
-    return f"{g} / {mx}" if mx not in (None, "") else str(g)
-
-
-def changes(old, new):
+def schedule_changes(old, new):
     out = []
     if not old.get("started") and new.get("started"):
         out.append("🟢 اتفتح دلوقتي")
-    if new.get("grade") is not None and new.get("grade") != old.get("grade"):
-        out.append(f"🎯 درجة جديدة: {fmt_grade(new)}")
     for field, label in (("start", "ميعاد الفتح"), ("end", "ميعاد القفل")):
         if old.get(field) and new.get(field) and old[field] != new[field]:
             out.append(f"📅 {label} اتغير: {old[field]} ← {new[field]}")
     return out
 
 
+def schedule_events(label):
+    def on_new(it):
+        return f"🆕 {label} جديد\n{it['course']}\n{it['name']}\n{it['status']}"
+
+    def on_change(it, old, new):
+        lines = schedule_changes(old, new)
+        return f"{it['course']}\n{it['name']}\n" + "\n".join(lines) if lines else None
+
+    return on_new, on_change
+
+
+def grade_text(it):
+    g = it.get("grade")
+    if g == "":
+        return "اتصحح"
+    mx = it.get("max")
+    return f"{g} / {mx}" if mx not in (None, "") else str(g)
+
+
+def grade_event(it, title):
+    lines = [title, it["course"], it["name"], f"الدرجة: {grade_text(it)}"]
+    if it.get("percent") not in (None, ""):
+        lines.append(f"النسبة: {it['percent']}")
+    if it.get("status") not in (None, ""):
+        lines.append(f"الحالة: {it['status']}")
+    return "\n".join(lines)
+
+
+def grade_on_new(it):
+    return grade_event(it, "🎯 درجة جديدة") if it.get("grade") is not None else None
+
+
+def grade_on_change(it, old, new):
+    if new.get("grade") is None or new.get("grade") == old.get("grade"):
+        return None
+    if old.get("grade") is None:
+        return grade_event(it, "🎯 درجة جديدة")
+    return grade_event(it, f"🎯 الدرجة اتغيرت (كانت {old.get('grade')})")
+
+
+def file_on_new(it):
+    lines = ["📎 ملف جديد", it["course"], it["where"], it["name"]]
+    if it.get("by"):
+        lines.append(f"بواسطة: {it['by']}")
+    return "\n".join(lines)
+
+
+a_new, a_change = schedule_events("اسيمنت")
+q_new, q_change = schedule_events("كويز")
+
+# "tracked" = the only fields saved in state.json (never countdowns/download counts),
+# so the file doesn't change on every run.
+API_MONITORS = [
+    {
+        "key": "assignments", "plural": "الاسيمنتات",
+        "url": "/Assignment/GetStudentAssignments", "page": "/Assignment/AssignmentStudentList",
+        "method": "GET", "parse": parse_assignments,
+        "tracked": ("name", "start", "end", "started"),
+        "on_new": a_new, "on_change": a_change,
+    },
+    {
+        "key": "quizzes", "plural": "الكويزات",
+        "url": "/Quizzes/GetStudentQuizzes", "page": "/Quizzes/StudentQuizzes",
+        "method": "GET", "parse": parse_quizzes,
+        "tracked": ("name", "start", "end", "started"),
+        "on_new": q_new, "on_change": q_change,
+    },
+    {
+        "key": "files", "plural": "الملفات والمواد",
+        "url": "/ELearning/GetStudentElearningCourses", "page": "/ELearning/StudentElearning",
+        "method": "GET", "parse": parse_files,
+        "tracked": ("name",),
+        "on_new": file_on_new, "on_change": lambda it, old, new: None,
+    },
+    {
+        "key": "grades", "plural": "الدرجات",
+        "url": "/GradeBook/StudentAssignmentsAndQuizes", "page": "/GradeBook/StudentGradeBook",
+        "method": "POST", "parse": parse_grades,
+        "tracked": ("grade", "max"),
+        "on_new": grade_on_new, "on_change": grade_on_change,
+        "summary": lambda items: f" منهم {sum(1 for i in items.values() if i.get('grade') is not None)} فيهم درجة",
+    },
+]
+
+
 def fetch_json(session, mon):
-    r = session.get(
-        urljoin(BASE + "/", mon["url"]),
-        headers={
-            "X-Requested-With": "XMLHttpRequest",
-            "Accept": "application/json, text/javascript, */*; q=0.01",
-            "Referer": urljoin(BASE + "/", mon["page"]),
-        },
-        timeout=30,
-    )
+    headers = {
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Referer": urljoin(BASE + "/", mon["page"]),
+    }
+    if mon["method"] == "POST":
+        headers["Content-Type"] = "application/json; charset=utf-8"
+    r = session.request(mon["method"], urljoin(BASE + "/", mon["url"]), headers=headers, timeout=30)
     r.raise_for_status()
     try:
         data = r.json()
@@ -199,11 +275,12 @@ def fetch_json(session, mon):
 
 def check_api(session, state, mon):
     items = mon["parse"](fetch_json(session, mon))
-    current = {i: pick(it) for i, it in items.items()}
+    current = {i: {k: it.get(k) for k in mon["tracked"]} for i, it in items.items()}
     store = state.setdefault("api", {})
 
     if mon["key"] not in store:  # first time: save silently as baseline
-        telegram(f"✅ بدأت مراقبة {mon['plural']} ({len(current)} حاليًا)")
+        extra = mon["summary"](items) if "summary" in mon else ""
+        telegram(f"✅ بدأت مراقبة {mon['plural']} ({len(current)} حاليًا){extra}")
         store[mon["key"]] = current
         return
 
@@ -211,17 +288,12 @@ def check_api(session, state, mon):
     events = []
     for i, it in items.items():
         old = old_all.get(i)
-        head = f"{it['course']}\n{it['name']}"
-        if old is None:
-            events.append(f"🆕 {mon['label']} جديد\n{head}\n{it['status']}")
-        else:
-            ch = changes(old, current[i])
-            if ch:
-                events.append(f"{head}\n" + "\n".join(ch))
+        event = mon["on_new"](it) if old is None else mon["on_change"](it, old, current[i])
+        if event:
+            events.append(event)
 
     if events:
-        shown = events[:MAX_EVENTS]
-        text = f"🔔 {mon['plural']}\n\n" + "\n\n".join(shown)
+        text = f"🔔 {mon['plural']}\n\n" + "\n\n".join(events[:MAX_EVENTS])
         if len(events) > MAX_EVENTS:
             text += f"\n\n... و{len(events) - MAX_EVENTS} كمان"
         text += "\n" + urljoin(BASE + "/", mon["page"])
