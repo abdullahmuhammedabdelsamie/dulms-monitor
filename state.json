@@ -39,121 +39,91 @@
     "name": "Assignment 1",
     "start": "Oct 13, 2026 at 12:00 AM",
     "end": "Oct 20, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 20
+    "started": 1
    },
    "18845": {
     "name": "Assignment 1- Repeated",
     "start": "Oct 26, 2026 at 12:00 AM",
     "end": "Oct 31, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 10
+    "started": 1
    },
    "19118": {
     "name": "Midterm Assignment",
     "start": "Nov 7, 2026 at 12:00 AM",
     "end": "Nov 19, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 20
+    "started": 1
    },
    "18352": {
     "name": "Why Do We Choose a Product?",
     "start": "Oct 9, 2026 at 02:00 PM",
     "end": "Oct 16, 2026 at 11:55 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "18319": {
     "name": "Assignment 1",
     "start": "Oct 7, 2026 at 12:00 AM",
     "end": "Nov 4, 2026 at 11:00 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "18988": {
     "name": "Assignment 2",
     "start": "Oct 28, 2026 at 12:00 AM",
     "end": "Nov 4, 2026 at 11:00 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "18103": {
     "name": "sheet 1.lec",
     "start": "Sep 20, 2026 at 12:00 AM",
     "end": "Sep 27, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "18242": {
     "name": "sheet2.lec",
     "start": "Oct 4, 2026 at 12:00 AM",
     "end": "Oct 11, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "18316": {
     "name": "project 1",
     "start": "Oct 8, 2026 at 12:00 AM",
     "end": "Oct 15, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "18398": {
     "name": "sheet 3 legendre",
     "start": "Oct 11, 2026 at 12:00 AM",
     "end": "Oct 18, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "18546": {
     "name": "sheet 4",
     "start": "Oct 18, 2026 at 12:00 AM",
     "end": "Oct 25, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "18547": {
     "name": "project 2 for legender",
     "start": "Oct 17, 2026 at 12:00 AM",
     "end": "Oct 24, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "18785": {
     "name": "sheet 5",
     "start": "Oct 25, 2026 at 12:00 AM",
     "end": "Oct 31, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "19017": {
     "name": "sheet 6",
     "start": "Nov 1, 2026 at 12:00 AM",
     "end": "Nov 6, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 2
+    "started": 1
    },
    "19172": {
     "name": "Assignment(1)",
     "start": "Nov 14, 2026 at 12:00 AM",
     "end": "Dec 16, 2026 at 12:00 AM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    }
   },
   "quizzes": {
@@ -161,41 +131,628 @@
     "name": "Quiz_1",
     "start": "Oct 3, 2026 at 10:00 PM",
     "end": "Oct 3, 2026 at 10:08 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "33012": {
     "name": "Quiz_2",
     "start": "Oct 10, 2026 at 10:30 PM",
     "end": "Oct 10, 2026 at 10:37 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "34198": {
     "name": "Quiz_3",
     "start": "Oct 24, 2026 at 10:30 PM",
     "end": "Oct 24, 2026 at 10:40 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "33475": {
     "name": "Quiz_2",
     "start": "Oct 23, 2026 at 06:00 PM",
     "end": "Oct 23, 2026 at 06:30 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
    },
    "34714": {
     "name": "Quiz_5",
     "start": "Nov 6, 2026 at 07:35 PM",
     "end": "Nov 6, 2026 at 08:05 PM",
-    "started": 1,
-    "grade": null,
-    "max": 5
+    "started": 1
+   }
+  },
+  "files": {
+   "256122": {
+    "name": "Cont. lec 1.Gamma function"
+   },
+   "256123": {
+    "name": "Sheet 1.lec.pdf"
+   },
+   "256124": {
+    "name": "Sheet 1.section.pdf"
+   },
+   "258742": {
+    "name": "Applied~Sec(1).pdf"
+   },
+   "258842": {
+    "name": "lec 1.Gamma function.pdf"
+   },
+   "258843": {
+    "name": "Sheet 1.lec.pdf"
+   },
+   "258844": {
+    "name": "Sheet 1.section.pdf"
+   },
+   "258743": {
+    "name": "Applied~Sec(1).pdf"
+   },
+   "258845": {
+    "name": "Cont. lec 1.Gamma function"
+   },
+   "258846": {
+    "name": "Sheet 1.lec.pdf"
+   },
+   "258847": {
+    "name": "Sheet 1.section.pdf"
+   },
+   "262051": {
+    "name": "Applied~Sec(1).pdf"
+   },
+   "258848": {
+    "name": "Cont. lec 1.Gamma function"
+   },
+   "258849": {
+    "name": "Sheet 1.lec.pdf"
+   },
+   "258850": {
+    "name": "Sheet 1.section.pdf"
+   },
+   "262052": {
+    "name": "Applied~Sec(2).pdf"
+   },
+   "260518": {
+    "name": "lec 2.Beta function.pdf"
+   },
+   "260519": {
+    "name": "Sheet 2.lec.pdf"
+   },
+   "260521": {
+    "name": "Sheet 2.section.pdf"
+   },
+   "262053": {
+    "name": "Applied~Sec(2).pdf"
+   },
+   "263299": {
+    "name": "lec 3.legender.pdf"
+   },
+   "263300": {
+    "name": "sheet 3.lec n.pdf"
+   },
+   "263303": {
+    "name": "sheet 3.sectionn.docx.pdf"
+   },
+   "265186": {
+    "name": "Applied~Sec(3).pdf"
+   },
+   "265500": {
+    "name": "lec 4."
+   },
+   "265501": {
+    "name": "sheet 4.lec"
+   },
+   "265502": {
+    "name": "sheet 4.section"
+   },
+   "267497": {
+    "name": "numerical solution of Linear Equation.pdf"
+   },
+   "267695": {
+    "name": "lec 5.new.pdf"
+   },
+   "267696": {
+    "name": "sheet 5.lec new.pdf"
+   },
+   "267697": {
+    "name": "sheet 5.section new.pdf"
+   },
+   "269329": {
+    "name": "Applied~Sec(5).pdf"
+   },
+   "269535": {
+    "name": "lec 6.new.pdf"
+   },
+   "269536": {
+    "name": "sheet 6.lec new.pdf"
+   },
+   "269537": {
+    "name": "sheet 6.section new.pdf"
+   },
+   "271002": {
+    "name": "Applied~Sec(6).pdf"
+   },
+   "271880": {
+    "name": "lec 6.new.pdf"
+   },
+   "271881": {
+    "name": "sheet 6.lec new.pdf"
+   },
+   "271866": {
+    "name": "Applied~Sec(6).pdf"
+   },
+   "256170": {
+    "name": "Chapter (0) Introduction.pdf"
+   },
+   "261399": {
+    "name": "Chapter (1) Number Systems, Operations, and Codes.pdf"
+   },
+   "262293": {
+    "name": "Lab Design .pdf"
+   },
+   "261405": {
+    "name": "sheet_1[1].pdf"
+   },
+   "271719": {
+    "name": "practical labs"
+   },
+   "261401": {
+    "name": "Chapter (1) Number Systems, Operations, and Codes.pdf"
+   },
+   "262294": {
+    "name": "Lab Design .pdf"
+   },
+   "261407": {
+    "name": "sheet_1[1].pdf"
+   },
+   "271720": {
+    "name": "practical labs"
+   },
+   "260614": {
+    "name": "Chapter (2) Logic Gates.pdf"
+   },
+   "262295": {
+    "name": "Lab Design .pdf"
+   },
+   "261396": {
+    "name": "Sheet_(2)_Logic_Gates[1].pdf"
+   },
+   "271721": {
+    "name": "practical labs"
+   },
+   "261398": {
+    "name": "Chapter (2) Logic Gates.pdf"
+   },
+   "262296": {
+    "name": "Lab Design .pdf"
+   },
+   "271535": {
+    "name": "Sheet (1).pdf"
+   },
+   "258214": {
+    "name": "practical labs"
+   },
+   "261397": {
+    "name": "Sheet_(2)_Logic_Gates[1].pdf"
+   },
+   "261403": {
+    "name": "Chapter (2) Logic Gates.pdf"
+   },
+   "262098": {
+    "name": "Ascii table.jpeg"
+   },
+   "262297": {
+    "name": "Lab Design .pdf"
+   },
+   "271538": {
+    "name": "Digital & Logic Sheet 1 Solution (Fixed).pdf"
+   },
+   "259952": {
+    "name": "Lab 1"
+   },
+   "261404": {
+    "name": "Sheet_(2)_Logic_Gates[1].pdf"
+   },
+   "271722": {
+    "name": "practical labs"
+   },
+   "262310": {
+    "name": "Chapter (3) Boolean Algebra and Logic Simplification.pdf"
+   },
+   "262298": {
+    "name": "Lab Design .pdf"
+   },
+   "271536": {
+    "name": "Sheet (2) Logic Gates.pdf"
+   },
+   "271723": {
+    "name": "practical labs"
+   },
+   "262311": {
+    "name": "Chapter (3) Boolean Algebra and Logic Simplification.pdf"
+   },
+   "262299": {
+    "name": "Lab Design .pdf"
+   },
+   "271932": {
+    "name": "Digital & Logic Sheet 2 Solution"
+   },
+   "271725": {
+    "name": "practical labs"
+   },
+   "262312": {
+    "name": "Chapter (3) Boolean Algebra and Logic Simplification.pdf"
+   },
+   "262300": {
+    "name": "Lab Design .pdf"
+   },
+   "271537": {
+    "name": "Sheet (3) Boolean Algebra and Logic Simplification.pdf"
+   },
+   "271726": {
+    "name": "practical labs"
+   },
+   "266228": {
+    "name": "Chapter (4)  Boolean Combinational Logic Analysis 2026.pdf"
+   },
+   "262301": {
+    "name": "Lab Design .pdf"
+   },
+   "271727": {
+    "name": "practical labs"
+   },
+   "266229": {
+    "name": "Chapter (4)  Boolean Combinational Logic Analysis 2026.pdf"
+   },
+   "262302": {
+    "name": "Lab Design .pdf"
+   },
+   "266230": {
+    "name": "Chapter (4)  Boolean Combinational Logic Analysis 2026.pdf"
+   },
+   "262303": {
+    "name": "Lab Design .pdf"
+   },
+   "262304": {
+    "name": "Lab Design .pdf"
+   },
+   "262305": {
+    "name": "Lab Design .pdf"
+   },
+   "262306": {
+    "name": "Lab Design .pdf"
+   },
+   "262307": {
+    "name": "Lab Design .pdf"
+   },
+   "262308": {
+    "name": "Lab Design .pdf"
+   },
+   "262309": {
+    "name": "Lab Design .pdf"
+   },
+   "256104": {
+    "name": "Lecture 1.pdf"
+   },
+   "257621": {
+    "name": "Section (1)"
+   },
+   "257622": {
+    "name": "sheet (1) solution"
+   },
+   "259914": {
+    "name": "download matlab"
+   },
+   "256105": {
+    "name": "Lecture 1.pdf"
+   },
+   "257623": {
+    "name": "Section (1)"
+   },
+   "257624": {
+    "name": "sheet (1) solution"
+   },
+   "259915": {
+    "name": "how to install"
+   },
+   "256106": {
+    "name": "Lecture 1.pdf"
+   },
+   "257625": {
+    "name": "Section (1)"
+   },
+   "257626": {
+    "name": "sheet (1) solution"
+   },
+   "257909": {
+    "name": "Lab 1 Introduction to matlab.pdf"
+   },
+   "270932": {
+    "name": "Lab 1. Introduction to matlab.mp4"
+   },
+   "257908": {
+    "name": "Lecture 2.pdf"
+   },
+   "257911": {
+    "name": "Tables.pdf"
+   },
+   "257910": {
+    "name": "Lab 2. ploting CT signals.pdf"
+   },
+   "260117": {
+    "name": "Section (2).pdf"
+   },
+   "264268": {
+    "name": "sheet (2) solution.pdf"
+   },
+   "270933": {
+    "name": "Lab 2. ploting CT signals - part(1).mp4"
+   },
+   "260469": {
+    "name": "Lecture 03.pdf"
+   },
+   "260468": {
+    "name": "lab 3.pdf"
+   },
+   "262077": {
+    "name": "Section (3) part-1.pdf"
+   },
+   "262078": {
+    "name": "Section (3) part-2.pdf"
+   },
+   "262079": {
+    "name": "sheet (3) solution.pdf"
+   },
+   "270936": {
+    "name": "Lab 2. ploting CT signals - part(2).mp4"
+   },
+   "263201": {
+    "name": "Lecture 4.pdf"
+   },
+   "263202": {
+    "name": "a.mp4"
+   },
+   "263203": {
+    "name": "b.mp4"
+   },
+   "263204": {
+    "name": "c.mp4"
+   },
+   "263205": {
+    "name": "Lab 4.pdf"
+   },
+   "264258": {
+    "name": "Section (4).pdf"
+   },
+   "264259": {
+    "name": "sheet (4) solution.pdf"
+   },
+   "270939": {
+    "name": "Lab 3. Operations on CTS.mp4"
+   },
+   "266088": {
+    "name": "Lecture 5.pdf"
+   },
+   "266089": {
+    "name": "Lab 5.pdf"
+   },
+   "266098": {
+    "name": "Section (5).pdf"
+   },
+   "266099": {
+    "name": "sheet (5) solution.pdf"
+   },
+   "267883": {
+    "name": "Lecture 6.pdf"
+   },
+   "267884": {
+    "name": "Lab.6.pdf"
+   },
+   "269051": {
+    "name": "Section (6).pdf"
+   },
+   "269053": {
+    "name": "sheet (6) solution.pdf"
+   },
+   "269707": {
+    "name": "Lecture 6.pdf"
+   },
+   "269751": {
+    "name": "Section (6).pdf"
+   },
+   "269752": {
+    "name": "sheet (6) solution.pdf"
+   },
+   "262149": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270035": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270036": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270037": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270038": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270039": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270040": {
+    "name": "Technical 1 Handout.pdf"
+   },
+   "270033": {
+    "name": "Screenshot 213630.png"
+   },
+   "270034": {
+    "name": "Screenshot  213950.png"
+   },
+   "258380": {
+    "name": "Course Specfication Risk Management.pdf"
+   },
+   "258386": {
+    "name": "Lecture 2 week 2.pdf.pdf.pdf"
+   },
+   "258387": {
+    "name": "Lecture 2 week 2.pdf.pdf.pdf"
+   },
+   "261369": {
+    "name": "WEEK 3 Chapter 2 final edition 5 october 2026.pdf"
+   },
+   "261370": {
+    "name": "WEEK 3 Chapter 2 final edition 5 october 2026.pdf"
+   },
+   "268133": {
+    "name": "RM week 4 chapter 3 final edition P.ppt"
+   },
+   "268134": {
+    "name": "RM week 4 chapter 3 final edition P.ppt"
+   },
+   "265016": {
+    "name": "Ch1:Introduction to Marketing record 1"
+   },
+   "257982": {
+    "name": "Chapter-1 Introduction to marketing skills.pdf"
+   },
+   "257983": {
+    "name": "Chapter-1 Introduction to marketing skills.pdf"
+   },
+   "257984": {
+    "name": "Understanding Segmentation, Targeting and Positioning _ Talent and Skills HuB.mp4"
+   },
+   "265013": {
+    "name": "Ch1:Introduction to Marketing record 1"
+   },
+   "260882": {
+    "name": "Ch2- Marketing Environment-- Part 1.pdf"
+   },
+   "263283": {
+    "name": "Ch2: The Marketing Environment record 1"
+   },
+   "263280": {
+    "name": "Ch2: Part 2 Marketing Macro-environment  record 1"
+   },
+   "265018": {
+    "name": "Ch2- Marketing Environment--Part 2.pdf"
+   },
+   "265676": {
+    "name": "Ch2: Part 2 Marketing Environment(Cont.,) record 1"
+   },
+   "265677": {
+    "name": "Ch2: Part 2 Marketing Environment(Cont.,) record 2"
+   },
+   "268986": {
+    "name": "Chapter 3 - Strategic_Planning- Part 1.pdf"
+   },
+   "268995": {
+    "name": "Chapter 3- Strategic_Planning_Part_2.pdf"
+   },
+   "270626": {
+    "name": "Marketing Skills- Midterm Research.pdf"
+   }
+  },
+  "grades": {
+   "2:18103": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:18242": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:18316": {
+    "grade": "",
+    "max": "5"
+   },
+   "2:18398": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:18546": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:18547": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:18785": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:19017": {
+    "grade": "",
+    "max": "2"
+   },
+   "2:19172": {
+    "grade": "",
+    "max": "5"
+   },
+   "1:32701": {
+    "grade": "",
+    "max": "5"
+   },
+   "1:33012": {
+    "grade": "",
+    "max": "5"
+   },
+   "1:34198": {
+    "grade": "",
+    "max": "5"
+   },
+   "3:110020": {
+    "grade": "5",
+    "max": "5"
+   },
+   "3:110100": {
+    "grade": "5",
+    "max": "5"
+   },
+   "3:110430": {
+    "grade": "4.67",
+    "max": "5"
+   },
+   "2:18319": {
+    "grade": "",
+    "max": "5"
+   },
+   "2:18988": {
+    "grade": "",
+    "max": "5"
+   },
+   "2:18352": {
+    "grade": "",
+    "max": "5"
+   },
+   "1:33475": {
+    "grade": "",
+    "max": "5"
+   },
+   "1:34714": {
+    "grade": "",
+    "max": "5"
+   },
+   "2:18458": {
+    "grade": "",
+    "max": "20"
+   },
+   "2:18845": {
+    "grade": "",
+    "max": "10"
+   },
+   "2:19118": {
+    "grade": "",
+    "max": "20"
+   },
+   "3:110172": {
+    "grade": "2",
+    "max": "2"
+   },
+   "3:110464": {
+    "grade": "5",
+    "max": "5"
+   },
+   "3:110289": {
+    "grade": "4",
+    "max": "10"
    }
   }
  }
