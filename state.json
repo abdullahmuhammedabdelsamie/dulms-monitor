@@ -32,5 +32,163 @@
   "الميتنجات",
   "الملفات والمواد",
   "الدرجات"
- ]
+ ],
+ "api": {
+  "assignments": {
+   "18458": {
+    "name": "Assignment 1",
+    "start": "Oct 13, 2026 at 12:00 AM",
+    "end": "Oct 20, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 20
+   },
+   "18845": {
+    "name": "Assignment 1- Repeated",
+    "start": "Oct 26, 2026 at 12:00 AM",
+    "end": "Oct 31, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 10
+   },
+   "19118": {
+    "name": "Midterm Assignment",
+    "start": "Nov 7, 2026 at 12:00 AM",
+    "end": "Nov 19, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 20
+   },
+   "18352": {
+    "name": "Why Do We Choose a Product?",
+    "start": "Oct 9, 2026 at 02:00 PM",
+    "end": "Oct 16, 2026 at 11:55 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "18319": {
+    "name": "Assignment 1",
+    "start": "Oct 7, 2026 at 12:00 AM",
+    "end": "Nov 4, 2026 at 11:00 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "18988": {
+    "name": "Assignment 2",
+    "start": "Oct 28, 2026 at 12:00 AM",
+    "end": "Nov 4, 2026 at 11:00 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "18103": {
+    "name": "sheet 1.lec",
+    "start": "Sep 20, 2026 at 12:00 AM",
+    "end": "Sep 27, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "18242": {
+    "name": "sheet2.lec",
+    "start": "Oct 4, 2026 at 12:00 AM",
+    "end": "Oct 11, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "18316": {
+    "name": "project 1",
+    "start": "Oct 8, 2026 at 12:00 AM",
+    "end": "Oct 15, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "18398": {
+    "name": "sheet 3 legendre",
+    "start": "Oct 11, 2026 at 12:00 AM",
+    "end": "Oct 18, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "18546": {
+    "name": "sheet 4",
+    "start": "Oct 18, 2026 at 12:00 AM",
+    "end": "Oct 25, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "18547": {
+    "name": "project 2 for legender",
+    "start": "Oct 17, 2026 at 12:00 AM",
+    "end": "Oct 24, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "18785": {
+    "name": "sheet 5",
+    "start": "Oct 25, 2026 at 12:00 AM",
+    "end": "Oct 31, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   },
+   "19017": {
+    "name": "sheet 6",
+    "start": "Nov 1, 2026 at 12:00 AM",
+    "end": "Nov 6, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 2
+   }
+  },
+  "quizzes": {
+   "32701": {
+    "name": "Quiz_1",
+    "start": "Oct 3, 2026 at 10:00 PM",
+    "end": "Oct 3, 2026 at 10:08 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "33012": {
+    "name": "Quiz_2",
+    "start": "Oct 10, 2026 at 10:30 PM",
+    "end": "Oct 10, 2026 at 10:37 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "34198": {
+    "name": "Quiz_3",
+    "start": "Oct 24, 2026 at 10:30 PM",
+    "end": "Oct 24, 2026 at 10:40 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "33475": {
+    "name": "Quiz_2",
+    "start": "Oct 23, 2026 at 06:00 PM",
+    "end": "Oct 23, 2026 at 06:30 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   },
+   "34714": {
+    "name": "Quiz_5",
+    "start": "Nov 6, 2026 at 07:35 PM",
+    "end": "Nov 6, 2026 at 08:05 PM",
+    "started": 1,
+    "grade": null,
+    "max": 5
+   }
+  }
+ }
 }
