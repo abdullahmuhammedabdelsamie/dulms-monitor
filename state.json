@@ -146,6 +146,14 @@
     "started": 1,
     "grade": null,
     "max": 2
+   },
+   "19172": {
+    "name": "Assignment(1)",
+    "start": "Nov 14, 2026 at 12:00 AM",
+    "end": "Dec 16, 2026 at 12:00 AM",
+    "started": 1,
+    "grade": null,
+    "max": 5
    }
   },
   "quizzes": {
