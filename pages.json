@@ -1,0 +1,10 @@
+[
+  {"name": "الإشعارات", "url": "/Notifications/NotificationsList"},
+  {"name": "الإعلانات", "url": "/Announcement/AllAnnouncement"},
+  {"name": "الاسيمنتات", "url": "/Assignment/AssignmentStudentList"},
+  {"name": "الكويزات", "url": "/Quizzes/StudentQuizzes"},
+  {"name": "الامتحانات", "url": "/ExamQuiz/StudentExams"},
+  {"name": "الميتنجات", "url": "/StudentMeeting/MeetingList"},
+  {"name": "الملفات والمواد", "url": "/ELearning/StudentElearning"},
+  {"name": "الدرجات", "url": "/GradeBook/StudentGradeBook"}
+]
