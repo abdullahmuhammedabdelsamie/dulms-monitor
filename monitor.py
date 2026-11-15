@@ -541,7 +541,7 @@ HELP_TEXT = (
     "/quizzes - حالة الكويزات\n"
     "/grades - كل الدرجات اللي نزلت\n"
     "/meetings - الميتنجات\n\n"
-    "الرد بيوصل في الفحص الجاي (غالبًا خلال دقايق)، مش فوري."
+    "الرد بيوصل بعد نص دقيقة تقريبًا (وممكن أكتر لو جيت هاب اتأخر)."
 )
 
 BOT_COMMANDS = [
@@ -592,12 +592,20 @@ def set_bot_commands():
     r.raise_for_status()
 
 
+def webhook_active():
+    r = requests.get(f"https://api.telegram.org/bot{env('TG_TOKEN')}/getWebhookInfo", timeout=30)
+    r.raise_for_status()
+    return bool(r.json().get("result", {}).get("url"))
+
+
 def command_of(text):
     words = (text or "").strip().lstrip("/").split()
     return ALIASES.get(words[0].split("@")[0].lower()) if words else None
 
 
 def handle_commands(state, fresh):
+    if webhook_active():  # commands arrive through the relay (worker.js) and run on their own
+        return
     if "_tg_offset" not in state:  # first time: ignore old chat history, show the menu
         old = tg_updates(None)
         state["_tg_offset"] = max((u["update_id"] for u in old), default=0) + 1
@@ -627,6 +635,29 @@ def handle_commands(state, fresh):
             else:
                 telegram("⚠️ ما قدرتش أحمّل البيانات من الموقع دلوقتي، جرّب كمان شوية.")
         save(state)
+
+
+def run_command(text):
+    """Triggered by the relay the moment you send a command on Telegram."""
+    cmd = command_of(text)
+    if cmd is None:
+        telegram("مش فاهم الأمر ده. اكتب /help.")
+        return
+    if cmd == "help":
+        telegram(HELP_TEXT)
+        return
+    needs, build = REPORTS[cmd]
+    by_key = {m["key"]: m for m in API_MONITORS}
+    try:
+        session = requests.Session()
+        session.headers["User-Agent"] = UA
+        login(session)
+        fresh = {k: by_key[k]["parse"](fetch_json(session, by_key[k])) for k in needs}
+    except (Exception, SystemExit) as e:  # login() exits on a wrong password
+        print(f"command failed: {e}")
+        telegram("⚠️ ما قدرتش أحمّل البيانات من الموقع دلوقتي، جرّب كمان شوية.")
+        sys.exit(1)
+    telegram_long(build(fresh))
 
 
 REMIND_HOURS = (24, 3)
@@ -741,6 +772,11 @@ def check_page(session, state, index, page):
 
 # ------------------------------------------------------------------ main
 def main():
+    command = os.environ.get("TG_TEXT", "").strip()
+    if command:  # a command from Telegram: answer it and stop (state is not touched)
+        run_command(command)
+        return
+
     pages = json.loads(PAGES_FILE.read_text(encoding="utf-8")) if PAGES_FILE.exists() else []
     first_run = not STATE_FILE.exists()
     state = {} if first_run else json.loads(STATE_FILE.read_text(encoding="utf-8"))
