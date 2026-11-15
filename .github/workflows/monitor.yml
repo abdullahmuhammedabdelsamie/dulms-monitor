@@ -4,12 +4,18 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      text:
+        description: "Telegram command (filled in by the relay; leave empty when running by hand)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
 
+# scheduled/manual checks run one at a time; every Telegram command gets its own lane
 concurrency:
-  group: dulms-monitor
+  group: ${{ (github.event_name == 'workflow_dispatch' && inputs.text != '') && format('cmd-{0}', github.run_id) || 'dulms-monitor' }}
   cancel-in-progress: false
 
 jobs:
@@ -33,6 +39,7 @@ jobs:
           DULMS_PASS: ${{ secrets.DULMS_PASS }}
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          TG_TEXT: ${{ inputs.text }}
 
       - name: Save state
         if: always()
