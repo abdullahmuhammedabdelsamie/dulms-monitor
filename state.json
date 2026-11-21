@@ -124,6 +124,12 @@
     "start": "Nov 14, 2026 at 12:00 AM",
     "end": "Dec 11, 2026 at 12:00 AM",
     "started": 1
+   },
+   "19254": {
+    "name": "sheet 7",
+    "start": "Nov 22, 2026 at 12:00 AM",
+    "end": "Nov 27, 2026 at 12:00 AM",
+    "started": 0
    }
   },
   "quizzes": {
@@ -665,6 +671,15 @@
    },
    "272974": {
     "name": "Lab 4. CT Convolution.mp4"
+   },
+   "273329": {
+    "name": "lec 7.new.pdf"
+   },
+   "273332": {
+    "name": "sheet 7.lec new.pdf"
+   },
+   "273333": {
+    "name": "sheet 7.section new.pdf"
    }
   },
   "grades": {
@@ -774,6 +789,14 @@
    },
    "3:111134": {
     "grade": "12",
+    "max": "20"
+   },
+   "2:19254": {
+    "grade": "",
+    "max": "2"
+   },
+   "3:111156": {
+    "grade": "18.5",
     "max": "20"
    }
   },
