@@ -5,6 +5,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin
@@ -52,6 +53,18 @@ def telegram_file(filename, content, caption=""):
         timeout=60,
     )
     r.raise_for_status()
+
+
+
+def with_retry(func, *args, **kwargs):
+    """Retry a network call on a transient connection reset; real errors still fail."""
+    for attempt in range(3):
+        try:
+            return func(*args, **kwargs)
+        except requests.ConnectionError:
+            if attempt == 2:
+                raise
+            time.sleep(3 * (attempt + 1))
 
 
 def login(session):
@@ -604,20 +617,20 @@ def command_of(text):
 
 
 def handle_commands(state, fresh):
-    if webhook_active():  # commands arrive through the relay (worker.js) and run on their own
+    if with_retry(webhook_active):  # commands arrive through the relay (worker.js) and run on their own
         return
     if "_tg_offset" not in state:  # first time: ignore old chat history, show the menu
-        old = tg_updates(None)
+        old = with_retry(tg_updates, None)
         state["_tg_offset"] = max((u["update_id"] for u in old), default=0) + 1
         try:
             set_bot_commands()
         except Exception as e:
             print(f"setMyCommands failed: {e}")
-        telegram("✅ الأوامر اتفعلت.\n\n" + HELP_TEXT)
+        with_retry(telegram, "✅ الأوامر اتفعلت.\n\n" + HELP_TEXT)
         return
 
     owner = env("TG_CHAT_ID")
-    for u in tg_updates(state["_tg_offset"]):
+    for u in with_retry(tg_updates, state["_tg_offset"]):
         state["_tg_offset"] = u["update_id"] + 1
         msg = u.get("message") or {}
         if str(msg.get("chat", {}).get("id")) != owner:  # only answer the owner
@@ -625,15 +638,15 @@ def handle_commands(state, fresh):
             continue
         cmd = command_of(msg.get("text"))
         if cmd is None:
-            telegram("مش فاهم الأمر ده. اكتب /help.")
+            with_retry(telegram, "مش فاهم الأمر ده. اكتب /help.")
         elif cmd == "help":
-            telegram(HELP_TEXT)
+            with_retry(telegram, HELP_TEXT)
         else:
             needs, build = REPORTS[cmd]
             if all(k in fresh for k in needs):
-                telegram_long(build(fresh))
+                with_retry(telegram_long, build(fresh))
             else:
-                telegram("⚠️ ما قدرتش أحمّل البيانات من الموقع دلوقتي، جرّب كمان شوية.")
+                with_retry(telegram, "⚠️ ما قدرتش أحمّل البيانات من الموقع دلوقتي، جرّب كمان شوية.")
         save(state)
 
 
