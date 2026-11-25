@@ -885,6 +885,10 @@
    }
   }
  },
- "reminders": {},
+ "reminders": {
+  "assignments:19254": [
+   24
+  ]
+ },
  "_tg_offset": 983187803
 }
