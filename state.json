@@ -173,7 +173,7 @@
     "name": "Quiz_5",
     "start": "Nov 28, 2026 at 10:30 PM",
     "end": "Nov 28, 2026 at 10:40 PM",
-    "started": 0
+    "started": 1
    }
   },
   "files": {
@@ -935,6 +935,11 @@
    }
   }
  },
- "reminders": {},
+ "reminders": {
+  "quizzes:35782": [
+   3,
+   24
+  ]
+ },
  "_tg_offset": 983187803
 }
